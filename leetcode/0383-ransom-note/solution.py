@@ -1,0 +1,11 @@
+from collections import Counter
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        r = Counter(ransomNote)
+        m = Counter(magazine)
+        for char,count in r.items():
+            if char not in m:
+                return False
+            if count>m[char]:
+                return False
+        return True

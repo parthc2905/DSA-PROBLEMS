@@ -3,7 +3,7 @@ name: LeetCode Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"  #Runs every 6 hours  
+    - cron: "0 8 * * *"  #Runs every day once  
 
 permissions:
   contents: write

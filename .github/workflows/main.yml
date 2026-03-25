@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check files
+        run: |
+          echo "Listing leetcode folder"
+          ls -R
       # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4

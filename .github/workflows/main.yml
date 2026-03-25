@@ -3,7 +3,7 @@ name: LeetCode Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 8 * * *"   # Runs once daily at 08:00 UTC
+    - cron: "0 8 * * *"   # runs daily at 08:00 UTC
 
 permissions:
   contents: write
@@ -13,10 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check files
-        run: |
-          echo "Listing leetcode folder"
-          ls -R
       # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,92 +28,38 @@ jobs:
           verbose: true
           commit-header: "[LeetCode Sync]"
 
-      # 3️⃣ Generate solved problems list
-      - name: Generate categorized README
+      # 3️⃣ Update README with table
+      - name: Update README with solved problems
         run: |
-          pip install requests
-      
-          python <<EOF
-          import os, requests, re, time
-          from collections import defaultdict
-          
-          folder = "leetcode"
-          files = os.listdir(folder)
-          data = defaultdict(list)
-          
-          def get_slug(filename):
-              name = re.sub(r'\.[^.]+$', '', filename)
-              name = re.sub(r'^\d+-', '', name)
-              return name
-          
-          def fetch_problem(slug):
-              url = "https://leetcode.com/graphql"
-              query = {
-                  "query": """
-                  query getQuestion($titleSlug: String!) {
-                    question(titleSlug: $titleSlug) {
-                      questionFrontendId
-                      title
-                      difficulty
-                      topicTags { name }
-                    }
-                  }
-                  """,
-                  "variables": {"titleSlug": slug}
-              }
-              r = requests.post(url, json=query)
-              return r.json()["data"]["question"]
-          
-          for file in files:
-              slug = get_slug(file)
-          
-              try:
-                  q = fetch_problem(slug)
-                  time.sleep(0.3)
-          
-                  if not q:
-                      continue
-          
-                  num = q["questionFrontendId"]
-                  title = q["title"]
-                  difficulty = q["difficulty"]
-                  topics = [t["name"] for t in q["topicTags"]]
-          
-                  for topic in topics:
-                      data[topic].append((num, title, difficulty, file))
-          
-              except Exception as e:
-                  print(f"Error for {slug}: {e}")
-          
-          content = ""
-          
-          for topic in sorted(data.keys()):
-              content += f"## {topic}\n\n"
-              content += "| # | Problem | Difficulty | Link |\n"
-              content += "|---|--------|------------|------|\n"
-          
-              for num, title, diff, file in sorted(data[topic], key=lambda x: int(x[0])):
-                  content += f"| {num} | {title} | {diff} | [View](leetcode/{file}) |\n"
-          
-              content += "\n"
-          
-          if os.path.exists("README.md"):
-              with open("README.md", "r") as f:
-                  old = f.read()
-          
-              if "## 📘 LeetCode Solutions" in old:
-                  old = old.split("## 📘 LeetCode Solutions")[0]
-          else:
-              old = ""
-          
-          with open("README.md", "w") as f:
-              f.write(old + "## 📘 LeetCode Solutions\n\n" + content)
-          EOF
-      # 4️⃣ Commit README changes
+          echo "## 📘 All LeetCode Solutions" > temp.md
+          echo "" >> temp.md
+          echo "| # | Problem | Link |" >> temp.md
+          echo "|---|---------|------|" >> temp.md
+
+          ls leetcode | sort -n | while read file; do
+            num=$(echo "$file" | cut -d'-' -f1)
+
+            name=$(echo "$file" | cut -d'-' -f2- \
+              | sed 's/\.[^.]*$//' \
+              | sed 's/-/ /g' \
+              | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
+
+            echo "| $num | $name | [View](leetcode/$file) |" >> temp.md
+          done
+
+          # Replace old section
+          if grep -q "## 📘 All LeetCode Solutions" README.md; then
+            sed -i '/## 📘 All LeetCode Solutions/,$d' README.md
+          fi
+
+          cat temp.md >> README.md
+          rm temp.md
+
+      # 4️⃣ Commit changes
       - name: Commit README
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add README.md
-          git commit -m "Update README with latest LeetCode problems" || echo "No changes"
+          git commit -m "Update README with LeetCode solutions" || echo "No changes"
           git push

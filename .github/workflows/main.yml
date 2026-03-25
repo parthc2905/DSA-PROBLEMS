@@ -33,15 +33,19 @@ jobs:
         run: |
           echo "## 📘 Latest LeetCode Solutions" > temp.md
           echo "" >> temp.md
+          echo "| Problem | Link |" >> temp.md
+          echo "|--------|------|" >> temp.md
+      
           ls leetcode | sort -r | head -n 10 | while read file; do
-            echo "- $file" >> temp.md
+            name=$(echo "$file" | sed 's/\.[^.]*$//' | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')   # remove extension
+            echo "| $name | [View](leetcode/$file) |" >> temp.md
           done
-
+      
           # Replace section in README
           if grep -q "## 📘 Latest LeetCode Solutions" README.md; then
             sed -i '/## 📘 Latest LeetCode Solutions/,$d' README.md
           fi
-
+      
           cat temp.md >> README.md
           rm temp.md
 

@@ -31,19 +31,22 @@ jobs:
       # 3️⃣ Generate solved problems list
       - name: Update README with solved problems
         run: |
-          echo "## 📘 Latest LeetCode Solutions" > temp.md
+          echo "## 📘 All LeetCode Solutions" > temp.md
           echo "" >> temp.md
-          echo "| Problem | Link |" >> temp.md
-          echo "|--------|------|" >> temp.md
+          echo "| # | Problem | Link |" >> temp.md
+          echo "|---|---------|------|" >> temp.md
       
-          ls leetcode | sort -r | head -n 10 | while read file; do
-            name=$(echo "$file" | sed 's/\.[^.]*$//' | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')   # remove extension
-            echo "| $name | [View](leetcode/$file) |" >> temp.md
+          ls leetcode | sort -n | while read file; do
+            num=$(echo "$file" | cut -d'-' -f1)
+      
+            name=$(echo "$file" | cut -d'-' -f2- | sed 's/\.[^.]*$//' | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
+      
+            echo "| $num | $name | [View](leetcode/$file) |" >> temp.md
           done
       
-          # Replace section in README
-          if grep -q "## 📘 Latest LeetCode Solutions" README.md; then
-            sed -i '/## 📘 Latest LeetCode Solutions/,$d' README.md
+          # Replace section
+          if grep -q "## 📘 All LeetCode Solutions" README.md; then
+            sed -i '/## 📘 All LeetCode Solutions/,$d' README.md
           fi
       
           cat temp.md >> README.md

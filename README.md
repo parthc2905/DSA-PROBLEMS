@@ -1,6 +1,3 @@
-
-## 📘 LeetCode Solutions
-
 ## 📘 All LeetCode Solutions
 
 | # | Problem | Link |

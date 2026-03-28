@@ -8,6 +8,7 @@
 | 0009 | Palindrome Number | [View](leetcode/0009-palindrome-number) |
 | 0013 | Roman To Integer | [View](leetcode/0013-roman-to-integer) |
 | 0014 | Longest Common Prefix | [View](leetcode/0014-longest-common-prefix) |
+| 0015 | 3sum | [View](leetcode/0015-3sum) |
 | 0020 | Valid Parentheses | [View](leetcode/0020-valid-parentheses) |
 | 0021 | Merge Two Sorted Lists | [View](leetcode/0021-merge-two-sorted-lists) |
 | 0026 | Remove Duplicates From Sorted Array | [View](leetcode/0026-remove-duplicates-from-sorted-array) |
@@ -24,6 +25,7 @@
 | 0094 | Binary Tree Inorder Traversal | [View](leetcode/0094-binary-tree-inorder-traversal) |
 | 0100 | Same Tree | [View](leetcode/0100-same-tree) |
 | 0101 | Symmetric Tree | [View](leetcode/0101-symmetric-tree) |
+| 0104 | Maximum Depth Of Binary Tree | [View](leetcode/0104-maximum-depth-of-binary-tree) |
 | 0112 | Path Sum | [View](leetcode/0112-path-sum) |
 | 0118 | Pascals Triangle | [View](leetcode/0118-pascals-triangle) |
 | 0119 | Pascals Triangle Ii | [View](leetcode/0119-pascals-triangle-ii) |
@@ -72,8 +74,10 @@
 | 0507 | Perfect Number | [View](leetcode/0507-perfect-number) |
 | 0541 | Reverse String Ii | [View](leetcode/0541-reverse-string-ii) |
 | 0561 | Array Partition | [View](leetcode/0561-array-partition) |
+| 0566 | Reshape The Matrix | [View](leetcode/0566-reshape-the-matrix) |
 | 0575 | Distribute Candies | [View](leetcode/0575-distribute-candies) |
 | 0594 | Longest Harmonious Subsequence | [View](leetcode/0594-longest-harmonious-subsequence) |
+| 0598 | Range Addition Ii | [View](leetcode/0598-range-addition-ii) |
 | 0599 | Minimum Index Sum Of Two Lists | [View](leetcode/0599-minimum-index-sum-of-two-lists) |
 | 0605 | Can Place Flowers | [View](leetcode/0605-can-place-flowers) |
 | 0628 | Maximum Product Of Three Numbers | [View](leetcode/0628-maximum-product-of-three-numbers) |
@@ -87,6 +91,7 @@
 | 0749 | Shortest Completing Word | [View](leetcode/0749-shortest-completing-word) |
 | 0767 | Prime Number Of Set Bits In Binary Representation | [View](leetcode/0767-prime-number-of-set-bits-in-binary-representation) |
 | 0782 | Jewels And Stones | [View](leetcode/0782-jewels-and-stones) |
+| 0792 | Binary Search | [View](leetcode/0792-binary-search) |
 | 0822 | Unique Morse Code Words | [View](leetcode/0822-unique-morse-code-words) |
 | 0824 | Number Of Lines To Write String | [View](leetcode/0824-number-of-lines-to-write-string) |
 | 0837 | Most Common Word | [View](leetcode/0837-most-common-word) |

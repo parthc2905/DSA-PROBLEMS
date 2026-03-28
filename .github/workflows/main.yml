@@ -31,27 +31,43 @@ jobs:
       # 3️⃣ Update README with table
       - name: Update README with solved problems
         run: |
+          # check if folder exists
+          if [ ! -d "leetcode" ]; then
+            echo "leetcode folder not found, skipping README update"
+            exit 0
+          fi
+      
+          # check if folder has files
+          if [ -z "$(ls -A leetcode)" ]; then
+            echo "leetcode folder is empty, skipping README update"
+            exit 0
+          fi
+      
           echo "## 📘 All LeetCode Solutions" > temp.md
           echo "" >> temp.md
           echo "| # | Problem | Link |" >> temp.md
           echo "|---|---------|------|" >> temp.md
-
+      
           ls leetcode | sort -n | while read file; do
             num=$(echo "$file" | cut -d'-' -f1)
-
+      
             name=$(echo "$file" | cut -d'-' -f2- \
               | sed 's/\.[^.]*$//' \
               | sed 's/-/ /g' \
               | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
-
+      
             echo "| $num | $name | [View](leetcode/$file) |" >> temp.md
           done
-
-          # Replace old section
-          if grep -q "## 📘 All LeetCode Solutions" README.md; then
-            sed -i '/## 📘 All LeetCode Solutions/,$d' README.md
+      
+          # safe README update
+          if [ -f README.md ]; then
+            if grep -q "## 📘 All LeetCode Solutions" README.md; then
+              sed -i '/## 📘 All LeetCode Solutions/,$d' README.md
+            fi
+          else
+            touch README.md
           fi
-
+      
           cat temp.md >> README.md
           rm temp.md
 

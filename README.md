@@ -85,6 +85,7 @@
 | 0628 | Maximum Product Of Three Numbers | [View](leetcode/0628-maximum-product-of-three-numbers) |
 | 0643 | Maximum Average Subarray I | [View](leetcode/0643-maximum-average-subarray-i) |
 | 0645 | Set Mismatch | [View](leetcode/0645-set-mismatch) |
+| 0661 | Image Smoother | [View](leetcode/0661-image-smoother) |
 | 0674 | Longest Continuous Increasing Subsequence | [View](leetcode/0674-longest-continuous-increasing-subsequence) |
 | 0682 | Baseball Game | [View](leetcode/0682-baseball-game) |
 | 0693 | Binary Number With Alternating Bits | [View](leetcode/0693-binary-number-with-alternating-bits) |

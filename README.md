@@ -10,6 +10,7 @@
 | 0013 | Roman To Integer | [View](leetcode/0013-roman-to-integer) |
 | 0014 | Longest Common Prefix | [View](leetcode/0014-longest-common-prefix) |
 | 0015 | 3sum | [View](leetcode/0015-3sum) |
+| 0016 | 3sum Closest | [View](leetcode/0016-3sum-closest) |
 | 0020 | Valid Parentheses | [View](leetcode/0020-valid-parentheses) |
 | 0021 | Merge Two Sorted Lists | [View](leetcode/0021-merge-two-sorted-lists) |
 | 0026 | Remove Duplicates From Sorted Array | [View](leetcode/0026-remove-duplicates-from-sorted-array) |

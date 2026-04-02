@@ -35,6 +35,8 @@
 | 0125 | Valid Palindrome | [View](leetcode/0125-valid-palindrome) |
 | 0136 | Single Number | [View](leetcode/0136-single-number) |
 | 0141 | Linked List Cycle | [View](leetcode/0141-linked-list-cycle) |
+| 0144 | Binary Tree Preorder Traversal | [View](leetcode/0144-binary-tree-preorder-traversal) |
+| 0145 | Binary Tree Postorder Traversal | [View](leetcode/0145-binary-tree-postorder-traversal) |
 | 0169 | Majority Element | [View](leetcode/0169-majority-element) |
 | 0175 | Combine Two Tables | [View](leetcode/0175-combine-two-tables) |
 | 0181 | Employees Earning More Than Their Managers | [View](leetcode/0181-employees-earning-more-than-their-managers) |
